@@ -6,11 +6,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import {
   SearchSvg,
   ToastContainerStyled,
-  // SearchbarStyled,
-  // SearchForm,
-  // SearchFormInput,
-  // SearchFormButtonLabel,
-  // SearchFormButton,
+  SearchbarStyled,
+  SearchForm,
+  SearchFormInput,
+  SearchFormButtonLabel,
+  SearchFormButton,
 } from './Searchbar.styled';
 
 const schema = yup.object().shape({
@@ -31,21 +31,25 @@ export const Searchbar = ({ onSubmit }) => (
         resetForm();
       }}
     >
-      <Form>
-        <Field
-          className="input"
-          name="searchQuery"
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search images and photos"
-        />
-        <ErrorMessage name="searchQuery" />
-        <button type="submit" className="button">
-          <span className="button-label">Search</span>
-          <SearchSvg />
-        </button>
-      </Form>
+      <SearchbarStyled>
+        <SearchForm>
+          <SearchFormInput
+            className="input"
+            name="searchQuery"
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+          />
+          <ErrorMessage name="searchQuery" />
+          <SearchFormButton type="submit" className="button">
+            <SearchFormButtonLabel className="button-label">
+              Search
+            </SearchFormButtonLabel>
+            <SearchSvg />
+          </SearchFormButton>
+        </SearchForm>
+      </SearchbarStyled>
 
       {/* <ToastContainerStyled /> */}
     </Formik>
