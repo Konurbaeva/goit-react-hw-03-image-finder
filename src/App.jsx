@@ -44,6 +44,7 @@ export class App extends Component {
         }));
         this.setState({ isLoading: false });
       } else {
+        // add ToastContainer
         toast.error(
           `Sorry, there are no images matching your search query. Please try again.`,
           {

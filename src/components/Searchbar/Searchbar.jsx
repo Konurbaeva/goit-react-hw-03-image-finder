@@ -25,8 +25,7 @@ export const Searchbar = ({ onSubmit }) => (
       }}
       validationSchema={schema}
       onSubmit={(values, { resetForm }) => {
-        onSubmit(values);
-        console.log('values: ', values);
+        onSubmit(values.searchQuery);
 
         resetForm();
       }}
