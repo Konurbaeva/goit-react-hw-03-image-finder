@@ -1,11 +1,11 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 // import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
   SearchSvg,
-  ToastContainerStyled,
+  // ToastContainerStyled,
   SearchbarStyled,
   SearchForm,
   SearchFormInput,
@@ -21,12 +21,12 @@ export const Searchbar = ({ onSubmit }) => (
   <div>
     <Formik
       initialValues={{
-        name: '',
-        number: '',
+        searchQuery: '',
       }}
       validationSchema={schema}
       onSubmit={(values, { resetForm }) => {
         onSubmit(values);
+        console.log('values: ', values);
 
         resetForm();
       }}
@@ -34,18 +34,16 @@ export const Searchbar = ({ onSubmit }) => (
       <SearchbarStyled>
         <SearchForm>
           <SearchFormInput
-            className="input"
             name="searchQuery"
             type="text"
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
+            // value={searchQuery}
           />
           <ErrorMessage name="searchQuery" />
-          <SearchFormButton type="submit" className="button">
-            <SearchFormButtonLabel className="button-label">
-              Search
-            </SearchFormButtonLabel>
+          <SearchFormButton type="submit">
+            <SearchFormButtonLabel>Search</SearchFormButtonLabel>
             <SearchSvg />
           </SearchFormButton>
         </SearchForm>
