@@ -2,6 +2,7 @@ import { Formik, ErrorMessage } from 'formik';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 import {
   SearchSvg,
   SearchbarStyled,
@@ -12,7 +13,7 @@ import {
 } from './Searchbar.styled';
 
 const schema = yup.object().shape({
-  searchQuery: yup.string().required(),
+  searchQuery: yup.string(),
 });
 
 export const Searchbar = ({ onSubmit }) => (
@@ -23,8 +24,12 @@ export const Searchbar = ({ onSubmit }) => (
       }}
       validationSchema={schema}
       onSubmit={(values, { resetForm }) => {
-        onSubmit(values.searchQuery);
+        if (values.searchQuery.trim() === '') {
+          toast.error('Sorry, please provide a search word');
+          return;
+        }
 
+        onSubmit(values.searchQuery);
         resetForm();
       }}
     >
@@ -45,6 +50,7 @@ export const Searchbar = ({ onSubmit }) => (
         </SearchForm>
       </SearchbarStyled>
     </Formik>
+    <ToastContainer autoClose={5000} />
   </div>
 );
 

@@ -28,11 +28,6 @@ export class App extends Component {
     const prevsearchQuery = prevState.searchQuery;
     const searchQuery = this.state.searchQuery;
 
-    // if (searchQuery.trim() === '') {
-    //   toast.error(`Sorry, please provide a search word`);
-    //   return;
-    // }
-
     if (prevPage !== nextPage || prevsearchQuery !== searchQuery) {
       this.loadResults();
     }
@@ -48,6 +43,7 @@ export class App extends Component {
         this.setState(prevState => ({
           hits: page > 1 ? [...prevState.hits, ...images] : images,
         }));
+
         this.setState({ isLoading: false });
       } else {
         toast.error(
@@ -70,7 +66,7 @@ export class App extends Component {
   };
 
   handleFormSubmit = searchQuery => {
-    this.setState({ searchQuery, page: 1 });
+    this.setState({ searchQuery, page: 1, hits: [] });
   };
 
   setActiveImg = activeImg => {
