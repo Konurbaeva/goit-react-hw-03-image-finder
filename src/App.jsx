@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
 import { Button } from 'components/Button';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import { Searchbar } from './components/Searchbar';
