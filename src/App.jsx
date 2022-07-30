@@ -97,7 +97,7 @@ export class App extends Component {
           <ImageGallery images={hits} openModal={this.setActiveImg} />
         )}
 
-        {hits.length > 0 && <Button onClick={this.loadMore} />}
+        {hits.length > 0 && <Button onClick={this.loadMore}>Load More</Button>}
         {activeImg && (
           <Modal
             largeImageURL={activeImg}
