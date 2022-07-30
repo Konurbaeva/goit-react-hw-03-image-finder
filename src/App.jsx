@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 import { Button } from 'components/Button';
 import ImageGallery from './components/ImageGallery/ImageGallery';
 import { Searchbar } from './components/Searchbar';
@@ -8,7 +9,6 @@ import { fetchImagesWithQuery } from './services/api';
 import Modal from 'components/Modal/Modal';
 
 import { Loader } from 'components/Loader/Loader';
-import { toast } from 'react-toastify';
 
 export class App extends Component {
   state = {
@@ -28,9 +28,10 @@ export class App extends Component {
     const prevsearchQuery = prevState.searchQuery;
     const searchQuery = this.state.searchQuery;
 
-    if (searchQuery === '') {
-      return;
-    }
+    // if (searchQuery.trim() === '') {
+    //   toast.error(`Sorry, please provide a search word`);
+    //   return;
+    // }
 
     if (prevPage !== nextPage || prevsearchQuery !== searchQuery) {
       this.loadResults();
@@ -50,17 +51,7 @@ export class App extends Component {
         this.setState({ isLoading: false });
       } else {
         toast.error(
-          `Sorry, there are no images matching your search query. Please try again.`,
-          {
-            position: 'top-right',
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: 'dark',
-          }
+          `Sorry, there are no images matching your search query. Please try again.`
         );
         this.setState({ isLoading: false });
       }
@@ -107,6 +98,7 @@ export class App extends Component {
             <img src={activeImg} alt="" />
           </Modal>
         )}
+        <ToastContainer autoClose={5000} />
       </>
     );
   }

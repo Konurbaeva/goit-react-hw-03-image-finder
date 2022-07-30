@@ -1,11 +1,9 @@
 import { Formik, ErrorMessage } from 'formik';
 import PropTypes from 'prop-types';
 import * as yup from 'yup';
-// import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {
   SearchSvg,
-  // ToastContainerStyled,
   SearchbarStyled,
   SearchForm,
   SearchFormInput,
@@ -46,8 +44,6 @@ export const Searchbar = ({ onSubmit }) => (
           </SearchFormButton>
         </SearchForm>
       </SearchbarStyled>
-
-      {/* <ToastContainerStyled /> */}
     </Formik>
   </div>
 );
